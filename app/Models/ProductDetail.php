@@ -13,6 +13,8 @@ class ProductDetail extends Model
         'product_id', 'description',
     ];
 
+    public $timestamps = false;
+
     public function product()
     {
         return $this->belongsTo(Product::class, 'product_id');

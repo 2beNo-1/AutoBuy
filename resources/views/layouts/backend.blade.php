@@ -21,7 +21,7 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    @section('css')
+    @yield('css')
 </head>
 <body>
 
@@ -49,7 +49,11 @@
                     <li><a href="#"><i class="fa fa-user fa-fw"></i> 修改密码</a>
                     </li>
                     <li class="divider"></li>
-                    <li><a href=""><i class="fa fa-sign-out fa-fw"></i> 安全退出</a>
+                    <li>
+                        <a href="{{ route('logout') }}"
+                           onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                            <i class="fa fa-sign-out fa-fw"></i> 安全退出
+                        </a>
                     </li>
                 </ul>
                 <!-- /.dropdown-user -->
@@ -62,29 +66,32 @@
             <div class="sidebar-nav navbar-collapse">
                 <ul class="nav" id="side-menu">
                     <li>
-                        <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> 主面板</a>
+                        <a href="{{ route('admin') }}"><i class="fa fa-dashboard fa-fw"></i> 主面板</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="flot.html">Flot Charts</a>
-                            </li>
-                            <li>
-                                <a href="morris.html">Morris.js Charts</a>
-                            </li>
-                        </ul>
-                        <!-- /.nav-second-level -->
+                        <a href="{{ route('admin.product.index') }}"><i class="fa fa-dashboard fa-fw"></i> 产品管理</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
+                        <a href="{{ route('admin') }}"><i class="fa fa-dashboard fa-fw"></i> 订单管理</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('admin') }}"><i class="fa fa-dashboard fa-fw"></i> 统计</a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)"><i class="fa fa-files-o fa-fw"></i> 系统配置 <span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="blank.html">Blank Page</a>
+                                <a href="">修改密码</a>
                             </li>
                             <li>
-                                <a href="login.html">Login Page</a>
+                                <a href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                                    安全退出
+                                </a>
                             </li>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                {{ csrf_field() }}
+                            </form>
                         </ul>
                         <!-- /.nav-second-level -->
                     </li>
@@ -98,11 +105,14 @@
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Dashboard</h1>
+                <h1 class="page-header">@yield('title')</h1>
             </div>
             <!-- /.col-lg-12 -->
+            <div class="col-sm-12">
+                @include('flash::message')
+            </div>
         </div>
-        @section('body')
+        @yield('body')
     </div>
     <!-- /#page-wrapper -->
 </div>
@@ -117,7 +127,12 @@
 <script src="{{ asset('/admin/dist/js/sb-admin-2.js') }}"></script>
 <script>
     $('#flash-overlay-modal').modal();
+    var deleteConfirm = function (url) {
+        if (confirm('确认删除？')) {
+            location.href = url
+        }
+    }
 </script>
-@section('js')
+@yield('js')
 </body>
 </html>
