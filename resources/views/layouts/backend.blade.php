@@ -75,7 +75,7 @@
                         <a href="{{ route('admin.order.index') }}"><i class="fa fa-dashboard fa-fw"></i> 订单管理</a>
                     </li>
                     <li>
-                        <a href="{{ route('admin') }}"><i class="fa fa-dashboard fa-fw"></i> 统计</a>
+                        <a href="{{ route('admin.service.charts') }}"><i class="fa fa-dashboard fa-fw"></i> 资金统计</a>
                     </li>
                     <li>
                         <a href="javascript:void(0)"><i class="fa fa-files-o fa-fw"></i> 系统配置 <span class="fa arrow"></span></a>

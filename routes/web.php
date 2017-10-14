@@ -35,6 +35,9 @@ Route::group([
     Route::post('/product/{id}/edit', 'ProductController@update');
     Route::get('/product/{id}/destroy', 'ProductController@destroy')->name('admin.product.destroy');
 
+    // 统计
+    Route::get('/service/charts', 'ServiceController@index')->name('admin.service.charts');
+
     // 订单路由
     Route::get('/order/index', 'OrderController@index')->name('admin.order.index');
     Route::get('/order/{id}/destroy', 'OrderController@destroy')->name('admin.order.destroy');
