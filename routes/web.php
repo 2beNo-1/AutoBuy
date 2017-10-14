@@ -35,4 +35,11 @@ Route::group([
     Route::post('/product/{id}/edit', 'ProductController@update');
     Route::get('/product/{id}/destroy', 'ProductController@destroy')->name('admin.product.destroy');
 
+    // 订单路由
+    Route::get('/order/index', 'OrderController@index')->name('admin.order.index');
+    Route::get('/order/{id}/destroy', 'OrderController@destroy')->name('admin.order.destroy');
+
+    // 修改密码
+    Route::get('/user/password', 'UserController@editPassword')->name('admin.user.password');
+    Route::post('/user/password', 'UserController@updatePassword');
 });

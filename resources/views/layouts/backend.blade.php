@@ -72,7 +72,7 @@
                         <a href="{{ route('admin.product.index') }}"><i class="fa fa-dashboard fa-fw"></i> 产品管理</a>
                     </li>
                     <li>
-                        <a href="{{ route('admin') }}"><i class="fa fa-dashboard fa-fw"></i> 订单管理</a>
+                        <a href="{{ route('admin.order.index') }}"><i class="fa fa-dashboard fa-fw"></i> 订单管理</a>
                     </li>
                     <li>
                         <a href="{{ route('admin') }}"><i class="fa fa-dashboard fa-fw"></i> 统计</a>
@@ -81,7 +81,7 @@
                         <a href="javascript:void(0)"><i class="fa fa-files-o fa-fw"></i> 系统配置 <span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="">修改密码</a>
+                                <a href="{{ route('admin.user.password') }}">修改密码</a>
                             </li>
                             <li>
                                 <a href="{{ route('logout') }}"
