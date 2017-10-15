@@ -18,7 +18,6 @@ class CreateProductItemsTable extends Migration
             $table->integer('product_id');
             $table->boolean('is_multi')->default(false)->comment('true多个,false单个');
             $table->string('item')->comment('项目内容');
-            $table->tinyInteger('status')->default(-1)->comment('-1未使用,9已使用');
             $table->timestamps();
         });
     }

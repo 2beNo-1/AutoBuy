@@ -35,6 +35,8 @@
                                class="btn btn-warning">删除</a>
                             <a href="{{ route('admin.product.edit', ['id' => $product->id]) }}"
                                class="btn btn-primary">编辑</a>
+                            <a href=""
+                               class="btn btn-info">产品条例</a>
                         </div>
                     </td>
                 </tr>

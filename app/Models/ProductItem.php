@@ -10,12 +10,17 @@ class ProductItem extends Model
     protected $table = 'product_items';
 
     protected $fillable = [
-        'product_id', 'is_multi', 'item', 'status',
+        'product_id', 'is_multi', 'item',
     ];
 
     public function product()
     {
         return $this->belongsTo(Product::class, 'product_id');
+    }
+
+    public function getStatusText()
+    {
+        return $this->is_multi ? '多项' : '单项';
     }
 
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Models\Order;
 use App\Models\Product;
+use App\Payments\Payment;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SubmitOrderRequest;
 
@@ -25,6 +26,18 @@ class OrderController extends Controller
             return redirect()->back();
         }
 
+        // 库存检测
+        if ($data['buy_num'] > $product->num) {
+            flash()->warning('库存不足');
+            return redirect()->back();
+        }
+
+        // 支付方式检测
+        if (! Payment::getInstance()->getDefaultPaymentInstance()->hasPayWay($data['pay_way'])) {
+            flash()->error('请选择支付方式！');
+            return redirect()->back();
+        }
+
         // 创建订单
         $orderData = [
             'oid'        => date('YmdHis') . mt_rand(100, 999),
@@ -32,6 +45,7 @@ class OrderController extends Controller
             'buy_num'    => $data['buy_num'],
             'buy_charge' => $product->now_charge,
             'all_charge' => $product->now_charge * $data['buy_num'],
+            'pay_way'    => $data['pay_way'],
             'status'     => -1,
         ];
         $order = Order::create($orderData);
@@ -41,7 +55,12 @@ class OrderController extends Controller
         }
 
         // 生成支付订单
-
+        $submitResult = Payment::getInstance()->getDefaultPaymentInstance()->payment($order);
+        if ($submitResult === false) {
+            flash()->error('创建远程订单失败，请稍后再试！');
+            return redirect()->back();
+        }
+        header('Location:' . $submitResult);
     }
 
 }

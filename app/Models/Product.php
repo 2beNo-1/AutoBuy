@@ -27,4 +27,10 @@ class Product extends Model
         return $this->hasMany(ProductItem::class, 'product_id');
     }
 
+    // 获取有效的产品[用于首页读取产品]
+    public static function getEffectiveProduct()
+    {
+        return self::where('deleted_at', null)->orderBy('id', 'desc')->get();
+    }
+
 }

@@ -12,7 +12,8 @@ class Order extends Model
     protected $table = 'orders';
 
     protected $fillable = [
-        'oid', 'product_id', 'buy_num', 'buy_charge', 'all_charge', 'status',
+        'oid', 'product_id', 'buy_num', 'buy_charge', 'all_charge',
+        'status', 'pay_way',
     ];
 
     public function product()

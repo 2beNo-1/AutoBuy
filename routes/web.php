@@ -18,7 +18,7 @@ Auth::routes();
 
 Route::get('/home', function () {
     return view('backend.dashboard');
-})->name('admin');
+})->name('admin')->middleware(['auth']);
 
 Route::group([
     '/admin',
@@ -33,6 +33,12 @@ Route::group([
     Route::get('/product/{id}/edit', 'ProductController@edit')->name('admin.product.edit');
     Route::post('/product/{id}/edit', 'ProductController@update');
     Route::get('/product/{id}/destroy', 'ProductController@destroy')->name('admin.product.destroy');
+
+    // 产品条例
+    Route::get('/product/item/index', 'ProductItemController@index')->name('admin.product.item.index');
+    Route::get('/product/item/add', 'ProductItemController@create')->name('admin.product.item.add');
+    Route::post('/product/item/add', 'ProductItemController@store');
+    Route::get('/product/item/{id}/destroy', 'ProductItemController@destroy')->name('admin.product.item.destroy');
 
     // 统计
     Route::get('/service/charts', 'ServiceController@index')->name('admin.service.charts');

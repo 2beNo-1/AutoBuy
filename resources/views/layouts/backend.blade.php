@@ -69,8 +69,18 @@
                         <a href="{{ route('admin') }}"><i class="fa fa-dashboard fa-fw"></i> 主面板</a>
                     </li>
                     <li>
-                        <a href="{{ route('admin.product.index') }}"><i class="fa fa-dashboard fa-fw"></i> 产品管理</a>
+                        <a href="javascript:void(0)"><i class="fa fa-files-o fa-fw"></i> 产品管理 <span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="{{ route('admin.product.index') }}"><i class="fa fa-dashboard fa-fw"></i> 产品列表</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('admin.product.item.index') }}"><i class="fa fa-dashboard fa-fw"></i> 产品条例</a>
+                            </li>
+                        </ul>
+                        <!-- /.nav-second-level -->
                     </li>
+
                     <li>
                         <a href="{{ route('admin.order.index') }}"><i class="fa fa-dashboard fa-fw"></i> 订单管理</a>
                     </li>

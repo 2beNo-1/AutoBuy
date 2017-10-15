@@ -50,7 +50,7 @@
                                         <div class="input-group-addon dec-num">减</div>
                                         <input type="text" name="buy_num"
                                                class="form-control text-center"
-                                               value="1" disabled="disabled">
+                                               value="1">
                                         <div class="input-group-addon add-num">加</div>
                                     </div>
                                 </div>
@@ -74,9 +74,13 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-12">支持下面的支付方式：</label>
+                                <label class="col-sm-12">支付方式：</label>
                                 <div class="col-sm-12">
-                                    支付宝/微信/中国银联/苹果支付
+                                    @foreach($payWays as $item)
+                                        <label>
+                                            <input type="radio" name="pay_way" value="{{ $item['value'] }}">{{ $item['name'] }}
+                                        </label>
+                                    @endforeach
                                 </div>
                             </div>
                             <div class="form-group">
@@ -112,7 +116,7 @@
             alert('请输入邮箱')
             return false
         }
-        return confirm('确定删除？')
+        return confirm('确定下单？')
     }
 
     var computeSum = function () {

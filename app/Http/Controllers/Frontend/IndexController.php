@@ -3,20 +3,19 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Models\Product;
-use Illuminate\Http\Request;
+use App\Payments\Payment;
 use App\Http\Controllers\Controller;
 
 class IndexController extends Controller
 {
     public function index()
     {
-        $where = [
-            ['deleted_at', null],
-        ];
-        $products = Product::where($where)
-                             ->orderBy('id', 'desc')
-                             ->get();
+        // 获取产品
+        $products = Product::getEffectiveProduct();
 
-        return view('frontend.index.index', compact('products'));
+        // 获取支付方式
+        $payWays = Payment::getInstance()->getDefaultPaymentInstance()->payWays();
+
+        return view('frontend.index.index', compact('payWays', 'products'));
     }
 }
