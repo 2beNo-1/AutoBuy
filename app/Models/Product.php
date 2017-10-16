@@ -30,7 +30,21 @@ class Product extends Model
     // 获取有效的产品[用于首页读取产品]
     public static function getEffectiveProduct()
     {
-        return self::where('deleted_at', null)->orderBy('id', 'desc')->get();
+        return self::orderBy('id', 'desc')->get();
+    }
+
+    /**
+     * 获取还没有使用的产品条例
+     * @return string|integer
+     */
+    public function getNoUseItemCount()
+    {
+        $multi = $this->items()->where('is_multi', 0)->first();
+        if ($multi) {
+            return '不限数量';
+        } else {
+            return $this->items()->where('order_id', 0)->count();
+        }
     }
 
 }

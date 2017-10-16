@@ -15,7 +15,8 @@ class CreateProductItemsTable extends Migration
     {
         Schema::create('product_items', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('product_id');
+            $table->integer('product_id')->comment('产品ID');
+            $table->integer('order_id')->default(0)->comment('订单ID');
             $table->boolean('is_multi')->default(false)->comment('true多个,false单个');
             $table->string('item')->comment('项目内容');
             $table->timestamps();

@@ -14,9 +14,7 @@ class ProductController extends Controller
 
     public function index(Request $request)
     {
-        $where = [
-            'deleted_at' => null,
-        ];
+        $where = [];
         if ($request->has('keywords')) {
             $where['name'] = ['like', '"%' . $request->input('keywords') . '%"'];
         }

@@ -16,6 +16,7 @@
                     <th>产品名</th>
                     <th>价格</th>
                     <th>库存/销量</th>
+                    <th>条例余量</th>
                     <th>创建时间</th>
                     <th>操作</th>
                 </tr>
@@ -27,6 +28,7 @@
                     <td>{{ $product->name }}</td>
                     <td>{{ $product->old_charge }}/{{ $product->now_charge }}</td>
                     <td>{{ $product->num }}/{{ $product->sales_num }}</td>
+                    <td><span class="label label-info">{{ $product->getNoUseItemCount() }}</span></td>
                     <td>{{ $product->created_at }}</td>
                     <td>
                         <div class="btn-group">
@@ -35,7 +37,7 @@
                                class="btn btn-warning">删除</a>
                             <a href="{{ route('admin.product.edit', ['id' => $product->id]) }}"
                                class="btn btn-primary">编辑</a>
-                            <a href=""
+                            <a href="{{ route('admin.product.item.index') }}?product_id={{ $product->id }}"
                                class="btn btn-info">产品条例</a>
                         </div>
                     </td>

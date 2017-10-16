@@ -11,10 +11,7 @@ class OrderController extends Controller
 
     public function index()
     {
-        $where = [
-            'deleted_at' => null,
-        ];
-        $orders = Order::where($where)->orderBy('id', 'desc')->paginate(15);
+        $orders = Order::orderBy('id', 'desc')->paginate(15);
         return view('backend.order.index', compact('orders'));
     }
 
