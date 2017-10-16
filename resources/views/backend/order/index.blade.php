@@ -6,6 +6,29 @@
 
     <div class="row">
         <div class="col-sm-12">
+            <form action="" method="get" class="form-horizontal">
+                <div class="form-group">
+                    <label class="control-label col-sm-4">产品</label>
+                    <div class="col-sm-4">
+                        <select name="product_id" class="form-control">
+                            <option value="0">请选择产品</option>
+                            @foreach(\App\Models\Product::getEffectiveProduct() as $product)
+                                <option value="{{ $product->id }}"
+                                        {{ $product->id == request()->input('product_id') ? 'selected' : '' }}>
+                                    {{ $product->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-4 col-sm-offset-4">
+                        <button type="submit" class="btn btn-primary">过滤</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-sm-12">
             <p>共 <b>{{ $orders->total() }}</b> 条数据</p>
         </div>
         <div class="col-sm-12">
@@ -41,7 +64,7 @@
             </table>
         </div>
         <div class="col-sm-12 text-center">
-            {{ $orders->render() }}
+            {{ $orders->appends(request()->input())->render() }}
         </div>
     </div>
 

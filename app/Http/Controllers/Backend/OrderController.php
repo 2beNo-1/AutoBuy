@@ -9,9 +9,13 @@ use App\Http\Controllers\Controller;
 class OrderController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
-        $orders = Order::orderBy('id', 'desc')->paginate(15);
+        $where = [];
+        if ($request->input('product_id')) {
+            $where[] = ['product_id', $request->input('product_id')];
+        }
+        $orders = Order::where($where)->orderBy('id', 'desc')->paginate(15);
         return view('backend.order.index', compact('orders'));
     }
 
