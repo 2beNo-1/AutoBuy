@@ -74,23 +74,13 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-12">支付方式：</label>
-                                <div class="col-sm-12">
-                                    @foreach($payWays as $item)
-                                        <label>
-                                            <input type="radio" name="pay_way" value="{{ $item['value'] }}">{{ $item['name'] }}
-                                        </label>
-                                    @endforeach
-                                </div>
-                            </div>
-                            <div class="form-group">
                                 <div class="col-sm-12">
                                     <button type="submit" class="btn btn-block btn-primary">购买</button>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-12">
-                                    <a href="" class="btn btn-block btn-warning">查询订单</a>
+                                    <a href="{{ route('order.query') }}" class="btn btn-block btn-warning">查询订单</a>
                                 </div>
                             </div>
                         </form>

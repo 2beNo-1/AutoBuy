@@ -26,7 +26,6 @@ class SubmitOrderRequest extends FormRequest
         return [
             'mobile' => 'required',
             'email' => 'required|email',
-            'pay_way' => 'required',
         ];
     }
 
@@ -36,7 +35,6 @@ class SubmitOrderRequest extends FormRequest
             'mobile.required' => '请输入手机号',
             'email.required' => '请输入邮箱',
             'email.email' => '请输入有效邮箱',
-            'pay_way.required' => '请选择支付方式',
         ];
     }
 
@@ -46,7 +44,6 @@ class SubmitOrderRequest extends FormRequest
             'mobile' => $this->input('mobile'),
             'email' => $this->input('email'),
             'buy_num' => intval($this->input('buy_num')),
-            'pay_way' => $this->input('pay_way'),
         ];
     }
 }

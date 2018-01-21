@@ -39,12 +39,7 @@ class Product extends Model
      */
     public function getNoUseItemCount()
     {
-        $multi = $this->items()->where('is_multi', 0)->first();
-        if ($multi) {
-            return '不限数量';
-        } else {
-            return $this->items()->where('order_id', 0)->count();
-        }
+        return $this->items()->where('order_id', 0)->count();
     }
 
 }

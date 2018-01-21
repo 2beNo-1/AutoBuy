@@ -10,7 +10,7 @@ class ProductItem extends Model
     protected $table = 'product_items';
 
     protected $fillable = [
-        'product_id', 'is_multi', 'item',
+        'product_id', 'order_id', 'item',
     ];
 
     public function product()
@@ -18,9 +18,9 @@ class ProductItem extends Model
         return $this->belongsTo(Product::class, 'product_id');
     }
 
-    public function getStatusText()
+    public function order()
     {
-        return $this->is_multi ? '多项' : '单项';
+        return $this->belongsTo(Order::class, 'order_id');
     }
 
 }

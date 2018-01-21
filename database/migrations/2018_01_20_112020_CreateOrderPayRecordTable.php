@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProductItemsTable extends Migration
+class CreateOrderPayRecordTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateProductItemsTable extends Migration
      */
     public function up()
     {
-        Schema::create('product_items', function (Blueprint $table) {
+        Schema::create('order_pay_records', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('product_id')->comment('产品ID');
-            $table->integer('order_id')->default(0)->comment('订单ID');
-            $table->string('item')->comment('项目内容');
+            $table->integer('order_id');
+            $table->string('payment_id')->comment('远程支付系统订单号');
+            $table->tinyInteger('status')->default(-1)->comment('-1无状态,9已支付');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateProductItemsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('product_items');
+        Schema::dropIfExists('order_pay_records');
     }
 }

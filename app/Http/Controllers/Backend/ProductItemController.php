@@ -30,32 +30,17 @@ class ProductItemController extends Controller
     public function store(ProductItemStoreRequest $request)
     {
         $data = $request->filldata();
-        // 判断产品是否存在
-        if (! Product::find($data['product_id'])) {
-            flash()->warning('请选择产品');
-            return redirect()->back();
-        }
+        $product = Product::findOrFail($data['product_id']);
 
-        if ($data['is_multi']) {
-            $insertData = [];
-            foreach ($data['item'] as $item) {
-                $insertData[] = array_merge(
-                    array_only($data, ['product_id', 'is_multi']),
-                    [
-                        'item' => $item,
-                        'created_at' => date('Y-m-d H:i:s'),
-                        'updated_at' => date('Y-m-d H:i:s')
-                    ]
-                );
-            }
-            $data = $insertData;
+        $insertData = [];
+        foreach ($data['item'] as $item) {
+            $insertData[] = ['item' => $item];
+        }
+        if (! $product->items()->createMany($insertData)) {
+            flash()->error('添加失败');
         } else {
-            $data['created_at'] = date('Y-m-d H:i:s');
-            $data['updated_at'] = date('Y-m-d H:i:s');
+            flash()->success('添加成功');
         }
-
-        DB::table('product_items')->insert($data);
-        flash()->success('添加成功');
         return redirect()->back();
     }
 

@@ -16,6 +16,12 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\Event' => [
             'App\Listeners\EventListener',
         ],
+        'App\Events\OrderPayedSuccess' => [
+            'App\Listeners\ChangeOrderStatus',
+            'App\Listeners\BindProductItem',
+            'App\Listeners\SendEmail',
+            'App\Listeners\IncrementSaleNum',
+        ],
     ];
 
     /**

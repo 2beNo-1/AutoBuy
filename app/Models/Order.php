@@ -16,9 +16,40 @@ class Order extends Model
         'status', 'pay_way',
     ];
 
+    public function optionInfo()
+    {
+        return $this->hasOne(OrderOption::class, 'order_id');
+    }
+
+    public function payRecord()
+    {
+        return $this->hasOne(OrderPayRecord::class, 'order_id');
+    }
+
     public function product()
     {
         return $this->belongsTo(Product::class, 'product_id');
+    }
+
+    public function productItems()
+    {
+        return $this->hasMany(ProductItem::class, 'order_id');
+    }
+
+    /**
+     * 获取订单查询结果[订单查询页面]
+     * @return string
+     */
+    public function getQueryResult()
+    {
+        if (! in_array($this->status, [1, 3, 9])) {
+            return '该订单无查询结果！';
+        }
+        $productItem = $this->productItem;
+        if (! $productItem) {
+            return '当前订单未发货，请联系管理员！';
+        }
+        return $productItem->item;
     }
 
     public function statusText()
@@ -53,7 +84,6 @@ class Order extends Model
         return $s;
     }
 
-    // 今日有效订单数目
     public static function todayEffectiveCount()
     {
         $where = [
@@ -65,7 +95,6 @@ class Order extends Model
                     ->count();
     }
 
-    // 昨日有效订单数目
     public static function yesterdayEffectiveCount()
     {
         $where = [
@@ -78,7 +107,6 @@ class Order extends Model
                     ->count();
     }
 
-    // 所有有效订单数目
     public static function effectiveCount()
     {
         return self::where('deleted_at', null)
@@ -86,7 +114,6 @@ class Order extends Model
                     ->count();
     }
 
-    // 今日收入
     public static function todayTotalMoney()
     {
         $where = [
@@ -98,7 +125,6 @@ class Order extends Model
         return $sum;
     }
 
-    // 昨日收入
     public static function yesterdayTotalMoney()
     {
         $where = [
@@ -111,13 +137,11 @@ class Order extends Model
         return $sum;
     }
 
-    // 总收入
     public static function totalMoney()
     {
         $orders = self::where('deleted_at', null)
                         ->whereIn('status', [1, 3, 9])
                         ->get();
-
         $sum = $orders ? $orders->sum('all_charge') : 0;
         return $sum;
     }

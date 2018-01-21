@@ -25,7 +25,6 @@ class ProductItemStoreRequest extends FormRequest
     {
         return [
             'product_id' => 'required',
-            'is_multi' => 'required',
             'item' => 'required',
         ];
     }
@@ -34,7 +33,6 @@ class ProductItemStoreRequest extends FormRequest
     {
         return [
             'product_id.required' => '请选择产品',
-            'is_multi.required' => '请选择类型',
             'item.required' => '请填写条例内容',
         ];
     }
@@ -43,13 +41,8 @@ class ProductItemStoreRequest extends FormRequest
     {
         $data = [
             'product_id' => intval($this->input('product_id')),
-            'is_multi' => intval($this->input('is_multi')),
         ];
-        if ($data['is_multi']) {
-            $data['item'] = explode("\r\n", $this->input('item'));
-        } else {
-            $data['item'] = $this->input('item');
-        }
+        $data['item'] = explode("\r\n", $this->input('item'));
 
         return $data;
     }

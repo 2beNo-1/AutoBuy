@@ -40,7 +40,6 @@
                 <tr>
                     <th>ID</th>
                     <th>产品</th>
-                    <th>类型</th>
                     <th>条例内容</th>
                     <th>添加时间</th>
                     <th>操作</th>
@@ -51,7 +50,6 @@
                     <tr>
                         <td>{{ $productItem->id }}</td>
                         <td>{{ $productItem->product->name }}</td>
-                        <td><span class="label label-info">{{ $productItem->getStatusText() }}</span></td>
                         <td>{{ $productItem->item }}</td>
                         <td>{{ $productItem->created_at }}</td>
                         <td>

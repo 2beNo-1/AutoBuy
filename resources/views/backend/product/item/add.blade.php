@@ -23,25 +23,12 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-sm-2">类型</label>
-                    <div class="col-sm-10">
-                        <input type="radio" name="is_multi" value="1" checked> 需要多项条例
-                        <input type="radio" name="is_multi" value="0"> 一条就足够了
-                    </div>
-                    <div class="col-sm-10 col-sm-offset-2">
-                        <div class="alert alert-warning">
-                            <p>如果多项条例的话每次用户购买就会发送未使用的条例给用户。</p>
-                            <p>单项条例不管多少用户购买都发送相同的条列给用户。</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
                     <label class="control-label col-sm-2">条例类容：</label>
                     <div class="col-sm-10">
                         <textarea name="item" cols="30" rows="10" class="form-control"></textarea>
                     </div>
                     <div class="col-sm-10 col-sm-offset-2">
-                        <p>注意：单项条列写一行就可以了，多项条例每行一条记录。</p>
+                        <p>注意：每行一条记录</p>
                     </div>
                 </div>
                 <div class="form-group">
