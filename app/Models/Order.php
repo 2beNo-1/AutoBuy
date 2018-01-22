@@ -36,22 +36,6 @@ class Order extends Model
         return $this->hasMany(ProductItem::class, 'order_id');
     }
 
-    /**
-     * 获取订单查询结果[订单查询页面]
-     * @return string
-     */
-    public function getQueryResult()
-    {
-        if (! in_array($this->status, [1, 3, 9])) {
-            return '该订单无查询结果！';
-        }
-        $productItem = $this->productItem;
-        if (! $productItem) {
-            return '当前订单未发货，请联系管理员！';
-        }
-        return $productItem->item;
-    }
-
     public function statusText()
     {
         $s = '';

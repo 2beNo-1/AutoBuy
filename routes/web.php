@@ -16,18 +16,19 @@ Route::get('/', 'Frontend\\IndexController@index');
 Route::post('/order/submit', 'Frontend\\OrderController@create')->name('order.post');
 
 // 订单查询[FRONT_END]
-Route::get('order/query', 'Frontend\\OrderController@page')->name('order.query');
+Route::get('order/query', 'Frontend\\OrderController@queryPage')->name('order.query');
 Route::post('order/query', 'Frontend\\OrderController@query');
-
-Auth::routes();
 
 // 支付回调
 Route::post('payment/notify', 'Frontend\\PaymentController@notify')->name('payment.notify');
 
-Route::get('/home', function () {
-    return view('backend.dashboard');
-})->name('admin')->middleware(['auth']);
+// 用户路由
+Auth::routes();
+Route::get('/register', 'Backend\EmptyController@index');
+Route::post('/register', 'Backend\EmptyController@index');
 
+// 后台路由
+Route::get('/home', 'Backend\HomeController@index')->name('admin')->middleware(['auth']);
 Route::group([
     '/admin',
     'namespace' => 'Backend',

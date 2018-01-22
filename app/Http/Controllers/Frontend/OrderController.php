@@ -4,27 +4,41 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Models\Order;
 use App\Models\Product;
-use Illuminate\Http\Request;
+use App\Models\OrderPayRecord;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\OrderQueryRequest;
 use App\Http\Requests\SubmitOrderRequest;
 
 class OrderController extends Controller
 {
 
-    // 订单查询页面
-    public function page()
+    public function queryPage()
     {
         return view('frontend.order.query');
     }
 
-    public function query(Request $request)
+    public function query(OrderQueryRequest $request)
     {
-        $oid = $request->input('oid');
-        $order = Order::where('oid', $oid)->first();
+        $queryData = $request->filldata();
+        $order = Order::where('oid', $queryData['oid'])->first();
         if (! $order) {
             flash()->error('订单不存在');
             return redirect()->back();
         }
+        if (! $order->optionInfo) {
+            flash()->error('当前订单信息不完整！');
+            return redirect()->back();
+        }
+        if (!($order->optionInfo->mobile == $queryData['info']
+            || $order->optionInfo->email == $queryData['info'])) {
+            flash()->error('订单不存在');
+            return redirect()->back();
+        }
+        if ($order->status != OrderPayRecord::PAY_SUCCESS) {
+            flash()->error('当前订单未支付！');
+            return redirect()->back();
+        }
+
         return view('frontend.order.query', compact('order'));
     }
 
@@ -51,12 +65,12 @@ class OrderController extends Controller
 
         // 创建订单
         $orderData = [
-            'oid'        => date('YmdHis') . mt_rand(100, 999),
+            'oid' => date('YmdHis') . mt_rand(100, 999),
             'product_id' => $product->id,
-            'buy_num'    => $data['buy_num'],
+            'buy_num' => $data['buy_num'],
             'buy_charge' => $product->now_charge,
             'all_charge' => $product->now_charge * $data['buy_num'],
-            'status'     => -1,
+            'status' => -1,
         ];
         $order = Order::create($orderData);
         if (! $order) {

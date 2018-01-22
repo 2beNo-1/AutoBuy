@@ -42,6 +42,7 @@
                     <th>产品</th>
                     <th>条例内容</th>
                     <th>添加时间</th>
+                    <th>使用</th>
                     <th>操作</th>
                 </tr>
                 </thead>
@@ -52,6 +53,13 @@
                         <td>{{ $productItem->product->name }}</td>
                         <td>{{ $productItem->item }}</td>
                         <td>{{ $productItem->created_at }}</td>
+                        <td>
+                            @if($productItem->order)
+                                <span class="label label-info">{{ $productItem->order->oid }}</span>
+                                @else
+                                <span class="label label-warning">否</span>
+                            @endif
+                        </td>
                         <td>
                             <div class="btn-group">
                                 <a href="javascript:void(0)"

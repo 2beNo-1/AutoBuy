@@ -14,7 +14,7 @@
                 <tr>
                     <th>ID</th>
                     <th>产品名</th>
-                    <th>价格</th>
+                    <th>原价/现价</th>
                     <th>库存/销量</th>
                     <th>条例余量</th>
                     <th>创建时间</th>
@@ -26,7 +26,7 @@
                 <tr>
                     <td>{{ $product->id }}</td>
                     <td>{{ $product->name }}</td>
-                    <td>{{ $product->old_charge }}/{{ $product->now_charge }}</td>
+                    <td>￥{{ $product->old_charge }}/￥{{ $product->now_charge }}</td>
                     <td>{{ $product->num }}/{{ $product->sales_num }}</td>
                     <td><span class="label label-info">{{ $product->getNoUseItemCount() }}</span></td>
                     <td>{{ $product->created_at }}</td>

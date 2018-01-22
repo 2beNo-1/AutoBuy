@@ -4,10 +4,9 @@ namespace App\Http\Controllers\Backend;
 
 use App\Models\Product;
 use App\Models\ProductItem;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductItemStoreRequest;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class ProductItemController extends Controller
 {
@@ -16,8 +15,9 @@ class ProductItemController extends Controller
     {
         $where = [];
         if ($request->input('product_id')) {
-            $where[] = ['product_id', $request->input('product_id')];
+            $where[] = ['product_id', '=', $request->input('product_id')];
         }
+
         $productItems = ProductItem::where($where)->orderBy('id', 'desc')->paginate(15);
         return view('backend.product.item.index', compact('productItems'));
     }

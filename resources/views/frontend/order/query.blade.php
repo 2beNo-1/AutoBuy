@@ -26,7 +26,12 @@
                     @if(isset($order))
                     <div class="col-sm-12">
                         <div class="alert alert-warning">
-                            <p><b>查询结果：</b> {{ $order->getQueryResult() }}</p>
+                            <p>信息如下(共计 <span style="color: red;">{{ count($order->productItems) }}</span> 条)：</p>
+                            <ul>
+                                @foreach($order->productItems as $item)
+                                <li>{{ $item->item }}</li>
+                                @endforeach
+                            </ul>
                         </div>
                     </div>
                     @endif
@@ -36,6 +41,12 @@
                             <label class="col-sm-12">订单号： <span class="red">*</span></label>
                             <div class="col-sm-12">
                                 <input type="text" name="oid" class="form-control" placeholder="请输入订单号">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-12">手机号/邮箱： <span class="red">*</span></label>
+                            <div class="col-sm-12">
+                                <input type="text" name="info" class="form-control" placeholder="手机号/邮箱">
                             </div>
                         </div>
                         <div class="form-group">
@@ -68,5 +79,13 @@
     </div>
 </div>
 
+<script src="https://cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
+<script>
+    $(function () {
+        $('.captcha').click(function () {
+            $(this).attr('src', '{{ captcha_src() }}?r=' + Math.random());
+        });
+    });
+</script>
 </body>
 </html>
