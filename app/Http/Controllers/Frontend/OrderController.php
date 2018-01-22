@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Autobuy\Oid;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\OrderPayRecord;
@@ -42,7 +43,7 @@ class OrderController extends Controller
         return view('frontend.order.query', compact('order'));
     }
 
-    public function create(SubmitOrderRequest $request, Product $product)
+    public function create(SubmitOrderRequest $request, Product $product, Oid $oid)
     {
         $data = $request->filldata();
         if ($data['buy_num'] < 1) {
@@ -63,9 +64,22 @@ class OrderController extends Controller
             return redirect()->back();
         }
 
+        // 订单号有效性验证
+        if (! $oid->validate($data['oid'])) {
+            flash()->warning('参数错误');
+            return redirect()->back();
+        }
+
+        // 订单重复检测
+        $order = Order::where('oid', $data['oid'])->first();
+        if ($order) {
+            flash()->warning('请不要重复提交订单');
+            return redirect()->back();
+        }
+
         // 创建订单
         $orderData = [
-            'oid' => date('YmdHis') . mt_rand(100, 999),
+            'oid' => $data['oid'],
             'product_id' => $product->id,
             'buy_num' => $data['buy_num'],
             'buy_charge' => $product->now_charge,
@@ -105,7 +119,7 @@ class OrderController extends Controller
             return redirect()->back();
         }
 
-        return view('frontend.order.pay', compact('payment'));
+        return view('frontend.order.pay', compact('payment', 'order'));
     }
 
 }

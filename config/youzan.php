@@ -6,7 +6,7 @@ return [
         'debug' => true,
         'log' => [
             'name' => 'youzan',
-            'file' => __DIR__.'/youzan.log',
+            'file' => storage_path('logs/youzan.log'),
             'level' => 'debug',
             'permission' => 0777,
         ]

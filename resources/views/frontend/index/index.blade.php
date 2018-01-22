@@ -29,6 +29,7 @@
                         <div class="col-sm-12">@include('vendor.flash.message')</div>
                         <form action="{{ route('order.post') }}" method="post" class="form-horizontal" onsubmit="return checkPost()">
                             {!! csrf_field() !!}
+                            <input type="hidden" name="oid" value="{{ $oid }}">
                             <div class="form-group">
                                 <label class="col-sm-12">请选择商品：</label>
                                 <div class="col-sm-12">

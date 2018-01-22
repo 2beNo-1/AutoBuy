@@ -40,7 +40,8 @@
                         <div class="form-group">
                             <label class="col-sm-12">订单号： <span class="red">*</span></label>
                             <div class="col-sm-12">
-                                <input type="text" name="oid" class="form-control" placeholder="请输入订单号">
+                                <input type="text" name="oid" value="{{ request()->input('oid') }}"
+                                       class="form-control" placeholder="请输入订单号">
                             </div>
                         </div>
                         <div class="form-group">
