@@ -47,12 +47,16 @@ php artisan db:seed
 到这里安装结束。
   
 后台地址：http://domain.app/home  
-账号：auto_buy@admin.com  
-密码：admin123  
+管理员账号密码：  
+
+```
+username: auto_buy@admin.com
+password: admin123
+```
 
 > 如果想要程序完整的运行，还需要进行下面的配置。
 
-### 其它配置
+## 其它配置
 
 #### 支付配置 
 
@@ -72,14 +76,33 @@ YOUZAN_KDT_ID=
 
 请参考：[https://laravel.com/docs/5.5/scheduling](https://laravel.com/docs/5.5/scheduling)
 
-## 帮助
+## 扩展包
 
-#### 忘记管理员密码？
+| 扩展包 | 描述 | 应用场景 |
+| --- | --- | --- |
+| [laracasts/flash](https://github.com/laracasts/flash) | 验证消息，通知消息输出 | 用于表单验证，业务逻辑验证等 |
+| [mewebstudio/captcha](https://github.com/mewebstudio/captcha) | 图形验证码 | 图形验证码 |
+| [overtrue/laravel-youzan](https://github.com/overtrue/laravel-youzan) | 基于laravel封装的有赞扩展包 | 个人收款解决方案 |
+| [rap2hpoutre/laravel-log-viewer](https://github.com/rap2hpoutre/laravel-log-viewer) | laravel日志查看 | laravel日志查看 |
 
-首先，在项目根目录打开命令行，输入下面命令：  
+## 自定义命令
 
-```
-php artisan password:reset
-```
+| 命令 | 描述 |
+| --- | --- |
+| `password:reset` | 重置管理员密码 |
+| `order:query` | 查询最近5条未支付订单的支付情况 |
 
-按照提示输入新密码即可！  
+## 定时任务
+
+| 任务 | 描述 | 周期 |
+| --- | --- | --- |
+| `order:query` | 查询最近5条(循环重置)未支付订单的支付情况 | 每分钟 |
+
+## 作者
+
+[轻色年华](https://github.com/Qsnh)
+
+## License
+
+MIT
+

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "6acfd81330263055746f9bee3f8c52c2",
+    "content-hash": "dccea0f41a418b28839b83bb983d6682",
     "packages": [
         {
             "name": "caouecs/laravel-lang",
@@ -2067,44 +2067,6 @@
                 "lumen"
             ],
             "time": "2017-06-29T11:18:01+00:00"
-        },
-        {
-            "name": "shopex/teegon",
-            "version": "v2.0.6",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/shopex/teegon-open-php-sdk.git",
-                "reference": "f099b56a7c9a9c1426b562570655c3b96f75efbe"
-            },
-            "require": {
-                "guzzlehttp/guzzle": "^6.2",
-                "php": ">=5.5.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Shopex\\TeegonClient\\": "src/"
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Elrond G",
-                    "email": "guocheng@shopex.cn",
-                    "homepage": "http://www.shopex.cn/"
-                }
-            ],
-            "description": "SDK for shopex teegon platform",
-            "homepage": "http://github.com/shopex/teegon-open-php-sdk",
-            "keywords": [
-                "api",
-                "sdk",
-                "shopex",
-                "teegon"
-            ],
-            "time": "2017-06-07T07:04:12+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
