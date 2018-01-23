@@ -36,9 +36,14 @@ class PaymentController extends Controller
             $order = app('youzan')->request('youzan.trade.get', ['tid' => $request->id]);
 
             $payment_id = $order['trade']['qr_id'];
-            $payment = OrderPayRecord::where('payment_id', $payment_id)->where('status', '<>', OrderPayRecord::PAY_SUCCESS)->first();
+            $payment = OrderPayRecord::where('payment_id', $payment_id)
+                                        ->where('status', '<>', OrderPayRecord::PAY_SUCCESS)
+                                        ->first();
             if ($payment) {
-                event(new OrderPayedSuccess($payment->order));
+                $payment->status = OrderPayRecord::PAY_SUCCESS;
+                if ($payment->save()) {
+                    event(new OrderPayedSuccess($payment->order));
+                }
             }
         }
     }

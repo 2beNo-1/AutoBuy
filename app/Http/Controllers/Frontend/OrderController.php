@@ -59,7 +59,7 @@ class OrderController extends Controller
         }
 
         // 库存检测
-        if ($data['buy_num'] > $product->num) {
+        if ($product->getNoUseItemCount() < $data['buy_num']) {
             flash()->warning('库存不足');
             return redirect()->back();
         }

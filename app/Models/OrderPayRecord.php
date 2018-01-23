@@ -9,6 +9,8 @@ class OrderPayRecord extends Model
 
     const PAY_SUCCESS = 9;
 
+    const PAY_NONE = -1;
+
     protected $table = 'order_pay_records';
 
     protected $fillable = [
