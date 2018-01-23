@@ -1,53 +1,85 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
+## AutoBuy 自动售卖系统
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+## 安装步骤
 
-## About Laravel
+首先，将程序克隆到本地：
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
+```
+git clone https://github.com/Qsnh/AutoBuy.git
+```
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+安装依赖：
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb combination of simplicity, elegance, and innovation give you tools you need to build any application with which you are tasked.
+```
+composer install
+```
 
-## Learning Laravel
+复制 `.env` ：
 
-Laravel has the most extensive and thorough documentation and video tutorial library of any modern web application framework. The [Laravel documentation](https://laravel.com/docs) is thorough, complete, and makes it a breeze to get started learning the framework.
+```
+cp .env.example .env
+```
 
-If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 900 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
+在 `.env` 环境中配置好数据库等信息。执行：
 
-## Laravel Sponsors
+```
+php artisan key:generate
+```
 
-We would like to extend our thanks to the following sponsors for helping fund on-going Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](http://patreon.com/taylorotwell):
+设置 `storage` 目录权限：
 
-- **[Vehikl](http://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Styde](https://styde.net)**
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
+```
+sudo chmod -R 0777 storage
+```
 
-## Contributing
+安装数据库表：
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+```
+php artisan migrate
+```
 
-## Security Vulnerabilities
+填充默认数据：
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+```
+php artisan db:seed
+```
 
-## License
+到这里安装结束。
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+后台地址：http://domain.app/home
+账号：auto_buy@admin.com
+密码：admin123
+
+> 如果想要程序完整的运行，还需要进行下面的配置。
+
+### 其它配置
+
+#### 支付配置 
+
+本套系统的支付解决方式来自这一篇文章：(基于有赞云的个人收款即时到帐实现方案)[https://laravel-china.org/articles/7014/real-time-account-implementation-scheme-based-on-personal-receipts-with-praise-clouds],您在阅读了上面的文章之后，请配置下 `.env` 文件中的：
+
+```
+YOUZAN_CLIENT_ID=
+YOUZAN_CLIENT_SECRET=
+YOUZAN_KDT_ID=
+```
+
+#### 邮箱配置
+
+请参考：(http://www.cnblogs.com/taotaoxixihaha/p/6650845.html)[http://www.cnblogs.com/taotaoxixihaha/p/6650845.html]
+
+#### 定时任务配置
+
+请参考：(https://laravel.com/docs/5.5/scheduling)[https://laravel.com/docs/5.5/scheduling]
+
+## 帮助
+
+#### 忘记管理员密码？
+
+首先，在项目根目录打开命令行，输入下面命令：
+
+```
+php artisan password:reset
+```
+
+按照提示输入新密码即可！
