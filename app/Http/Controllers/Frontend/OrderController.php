@@ -26,15 +26,18 @@ class OrderController extends Controller
             flash()->error('订单不存在');
             return redirect()->back();
         }
+
         if (! $order->optionInfo) {
             flash()->error('当前订单信息不完整！');
             return redirect()->back();
         }
+
         if (!($order->optionInfo->mobile == $queryData['info']
             || $order->optionInfo->email == $queryData['info'])) {
             flash()->error('订单不存在');
             return redirect()->back();
         }
+
         if ($order->status != OrderPayRecord::PAY_SUCCESS) {
             flash()->error('当前订单未支付！');
             return redirect()->back();
@@ -104,8 +107,7 @@ class OrderController extends Controller
         // 创建远程支付订单
         $payment = app('youzan')->request('youzan.pay.qrcode.create', [
             'qr_type' => 'QR_TYPE_DYNAMIC',
-//            'qr_price' => intval($order->all_charge * 100),
-            'qr_price' => 1,
+            'qr_price' => intval($order->all_charge * 100),
             'qr_name' => '购买商品' . $product->name,
             'qr_source' => $order->oid,
         ]);

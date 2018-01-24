@@ -12,21 +12,6 @@ use App\Http\Controllers\Controller;
 class PaymentController extends Controller
 {
 
-    public function query(Request $request)
-    {
-        $oid = $request->post('oid', '');
-        if (! $oid) {
-            return response()->json(['status' => 406, 'message' => '参数错误']);
-        }
-
-        $order = Order::where('oid', $oid)->first();
-        if (! $order) {
-            return response()->json(['status' => 404, 'message' => '订单不存在']);
-        }
-        
-        return response()->json(['status' => 200, 'message' => '', 'data' => ['status' => $order->status]]);
-    }
-
     public function notify(Request $request)
     {
         Log::info($request->input());
