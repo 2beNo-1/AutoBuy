@@ -51,7 +51,7 @@
                             <div class="form-group">
                                 <label class="col-sm-12">验证码： <span class="red">*</span></label>
                                 <div class="col-sm-4">
-                                    <input type="text" name="captcha_id" class="form-control" placeholder="验证码">
+                                    <input type="text" name="{{ \App\Autobuy\CaptchaString::CAPTCHA_FILE_NAME }}" class="form-control" placeholder="验证码">
                                 </div>
                                 <div class="col-sm-4">
                                     <img src="{{ captcha_src() }}" width="120" height="36" class="captcha">

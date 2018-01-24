@@ -17,7 +17,7 @@ Route::post('/order/submit', 'Frontend\\OrderController@create')->name('order.po
 
 // 订单查询[FRONT_END]
 Route::get('order/query', 'Frontend\\OrderController@queryPage')->name('order.query');
-Route::post('order/query', 'Frontend\\OrderController@query');
+Route::post('order/query', 'Frontend\\OrderController@query')->middleware(['captcha.check']);
 
 // 支付回调
 Route::post('payment/notify', 'Frontend\\PaymentController@notify')->name('payment.notify');
