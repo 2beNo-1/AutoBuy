@@ -29,6 +29,7 @@ Route::post('/register', 'Backend\EmptyController@index');
 
 // 后台路由
 Route::get('/home', 'Backend\HomeController@index')->name('admin')->middleware(['auth']);
+Route::get('/admin/logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index')->middleware(['auth']);
 Route::group([
     '/admin',
     'namespace' => 'Backend',

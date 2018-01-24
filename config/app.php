@@ -180,7 +180,8 @@ return [
 
         Laracasts\Flash\FlashServiceProvider::class,
         Mews\Captcha\CaptchaServiceProvider::class,
-        \Yangyifan\Upload\UploadServiceProvider::class,
+        Yangyifan\Upload\UploadServiceProvider::class,
+        Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
     ],
 
     /*
