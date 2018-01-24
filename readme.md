@@ -1,4 +1,12 @@
-## AutoBuy 自动售卖系统
+<h2 align="center">AutoBuy<h2>
+<br>
+<p align="center"><img src="public/thumbs/index.png"></p>
+<br>
+<p align="center"><img src="public/thumbs/payment.png"></p>
+<br>
+<p align="center"><img src="public/thumbs/admin.png"></p>
+<br>
+
 
 ## 安装步骤
 
@@ -66,6 +74,12 @@ password: admin123
 YOUZAN_CLIENT_ID=
 YOUZAN_CLIENT_SECRET=
 YOUZAN_KDT_ID=
+```
+
+##### 回调地址：
+
+```
+http://youdomain.com/payment/notify
 ```
 
 #### 邮箱配置
