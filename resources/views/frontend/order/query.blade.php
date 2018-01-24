@@ -70,8 +70,7 @@
                         </form>
                     </div>
                     <div class="panel-footer text-center">
-                        <p>CopyRight AutoBuy.APP</p>
-                        <p>联系QQ：616896861 客服电话：13675626825</p>
+                        @include('frontend.components.copyright')
                     </div>
                 </div>
             </div>

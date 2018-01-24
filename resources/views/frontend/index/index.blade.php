@@ -15,7 +15,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12 text-center">
-                <h2 style="line-height: 80px;">小自自动售卖系统</h2>
+                <h2 style="line-height: 80px;">AutoBuy</h2>
             </div>
             <div class="col-sm-6 col-sm-offset-3">
                 <div class="panel panel-default">
@@ -85,8 +85,7 @@
                         </form>
                     </div>
                     <div class="panel-footer text-center">
-                        <p>CopyRight AutoBuy.APP</p>
-                        <p>联系QQ：616896861 客服电话：13675626825</p>
+                        @include('frontend.components.copyright')
                     </div>
                 </div>
             </div>

@@ -52,8 +52,8 @@
             </div>
         </div>
         <div class="row" style="margin-top: 20px;">
-            <div class="col-xs-12">
-                <p class="text-center copyright">Copyright Autobuy.CC</p>
+            <div class="col-xs-12 text-center copyright">
+                @include('frontend.components.copyright')
             </div>
         </div>
     </div>
