@@ -9,6 +9,8 @@ class OrderOption extends Model
 
     protected $table = 'order_options';
 
+    public $timestamps = false;
+
     protected $fillable = [
         'order_id', 'mobile', 'email',
     ];

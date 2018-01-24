@@ -18,7 +18,6 @@ class CreateOrderOptionsTable extends Migration
             $table->integer('order_id');
             $table->string('mobile')->nullable()->comment('手机号');
             $table->string('email')->nullable()->comment('邮箱');
-            $table->timestamps();
         });
     }
 

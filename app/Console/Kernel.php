@@ -24,8 +24,12 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+        // 订单支付状态轮询
+        $schedule->command('order:query')->everyMinute();
+        // 备份
+        $schedule->command('backup:clean')->daily()->at('03:00');
+        // 备份定期清理
+        $schedule->command('backup:run')->daily()->at('04:00');
     }
 
     /**

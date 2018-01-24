@@ -7,11 +7,20 @@
     "require": {
         "php": ">=7.0.0",
         "fideloper/proxy": "~3.3",
+        "guzzlehttp/guzzle": "^6.3",
         "laracasts/flash": "^3.0",
         "laravel/framework": "5.5.*",
-        "laravel/tinker": "~1.0"
+        "laravel/tinker": "~1.0",
+        "mews/captcha": "^2.1",
+        "overtrue/laravel-lang": "^3.0",
+        "overtrue/laravel-youzan": "^1.0",
+        "pusher/pusher-php-server": "~3.0",
+        "rap2hpoutre/laravel-log-viewer": "^0.10.4",
+        "spatie/laravel-backup": "^5.1",
+        "yangyifan/upload": "^0.2.1"
     },
     "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.1",
         "filp/whoops": "~2.0",
         "fzaninotto/faker": "~1.4",
         "mockery/mockery": "0.9.*",
@@ -53,5 +62,12 @@
         "preferred-install": "dist",
         "sort-packages": true,
         "optimize-autoloader": true
-    }
+    },
+    "repositories": [
+        {
+            "type": "git",
+            "url": "https://github.com/shopex/teegon-open-php-sdk.git",
+            "tagpath": "2.0.*"
+        }
+    ]
 }

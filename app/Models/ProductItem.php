@@ -10,12 +10,17 @@ class ProductItem extends Model
     protected $table = 'product_items';
 
     protected $fillable = [
-        'product_id', 'is_multi', 'item', 'status',
+        'product_id', 'order_id', 'item',
     ];
 
     public function product()
     {
         return $this->belongsTo(Product::class, 'product_id');
+    }
+
+    public function order()
+    {
+        return $this->belongsTo(Order::class, 'order_id');
     }
 
 }

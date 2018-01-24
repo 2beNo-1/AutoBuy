@@ -63,6 +63,53 @@ return [
             'bucket' => env('AWS_BUCKET'),
         ],
 
+
+        'qiniu' => [
+            'driver'        => 'qiniu',
+            'domain'        => env('QINIU_DOMAIN', ''),
+            'access_key'    => env('QINIU_ACCESS_KEY', ''),
+            'secret_key'    => env('QINIU_SECRET_KEY', ''),
+            'bucket'        => env('QINIU_BUCKET', ''),
+            'transport'     => 'http',
+        ],
+
+        'upyun' => [
+            'driver'        => 'upyun',
+            'domain'        => env('UPYUN_DOMAIN'),
+            'username'      => env('UPYUN_USERNAME'),
+            'password'      => env('UPYUN_PASSWORD'),
+            'bucket'        => env('UPYUN_BUCKET'),
+            'timeout'       => 130,
+            'endpoint'      => env('UPYUN_ENDPOINT'),
+            'transport'     => 'http',
+        ],
+
+        'oss'	=> [
+            'driver'			=> 'oss',
+            'accessKeyId'		=> '',
+            'accessKeySecret' 	=> '',
+            'endpoint'			=> '',
+            'isCName'			=> false,
+            'securityToken'		=> null,
+            'bucket'            => '',
+            'timeout'           => '5184000',
+            'connectTimeout'    => '10',
+            'transport'     	=> 'http',
+            'max_keys'          => 1000,
+        ],
+
+        'cos'	=> [
+            'driver'			=> 'cos',
+            'domain'            => '',
+            'app_id'            => '',
+            'secret_id'         => '',
+            'secret_key'        => '',
+            'region'            => 'gz',
+            'transport'     	=> 'http',
+            'timeout'           => 60,
+            'bucket'            => '',
+        ],
+
     ],
 
 ];

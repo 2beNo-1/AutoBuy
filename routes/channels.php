@@ -11,6 +11,6 @@
 |
 */
 
-Broadcast::channel('App.User.{id}', function ($user, $id) {
-    return (int) $user->id === (int) $id;
+Broadcast::channel('order.{orderId}', function ($user, $orderId) {
+    return \App\Models\Order::where('oid', $orderId)->exists();
 });
