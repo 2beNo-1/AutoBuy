@@ -1,13 +1,4 @@
 <p align="center">AutoBuy<p>
-<p align="center">
-[![Github All Releases](https://img.shields.io/github/downloads/atom/atom/total.svg)](https://github.com/Qsnh/AutoBuy)
-[![Website](https://img.shields.io/website-up-down-green-red/http/shields.io.svg?label=AutoBuy.cc)](https://autobuy.cc)
-[![GitHub forks](https://img.shields.io/github/forks/badges/shields.svg?style=social&label=Fork)](https://github.com/Qsnh/AutoBuy)
-[![GitHub stars](https://img.shields.io/github/stars/badges/shields.svg?style=social&label=Stars)](https://github.com/Qsnh/AutoBuy)
-[![Packagist](https://img.shields.io/packagist/l/doctrine/orm.svg)](https://github.com/Qsnh/AutoBuy)
-[![GitHub issues](https://img.shields.io/github/issues/badges/shields.svg)](https://github.com/Qsnh/AutoBuy/issues)
-[![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/Qsnh/AutoBuy)
-</p>
 <br>
 <p align="center"><img src="public/thumbs/index.png"></p>
 <br>
