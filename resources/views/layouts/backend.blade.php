@@ -4,9 +4,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="小自自动售卖系统由小滕开发！版权所有，翻版必究！">
+    <meta name="description" content="https://github.com/Qsnh/AutoBuy">
     <meta name="author" content="小滕">
-    <title>【小自】自动售卖系统后台登陆</title>
+    <title>AutoBuy 后台管理系统</title>
     <!-- Bootstrap Core CSS -->
     <link href="{{ asset('/admin/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <!-- MetisMenu CSS -->
@@ -36,7 +36,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{ route('admin') }}">小自自动售卖系统V0.0.1</a>
+            <a class="navbar-brand" href="{{ route('admin') }}">AutoBuy V0.0.1</a>
         </div>
         <!-- /.navbar-header -->
 

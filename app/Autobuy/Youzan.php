@@ -3,6 +3,8 @@
 namespace App\Autobuy;
 
 
+use Illuminate\Http\Request;
+
 class Youzan
 {
 
@@ -24,6 +26,17 @@ class Youzan
             'status' => self::PAY_SUCCESS_CODE,
         ]);
         return $result['total_results'] > 0;
+    }
+
+    public function checkSign(Request $request)
+    {
+        $sign = strtolower($request->input('sign'));
+
+        $clientId = env('YOUZAN_CLIENT_ID');
+        $msg = $request->input('msg');
+        $clientSecret = env('YOUZAN_CLIENT_SECRET');
+
+        return $sign == md5($clientId . $msg . $clientSecret);
     }
 
 }
