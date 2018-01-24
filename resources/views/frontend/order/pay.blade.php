@@ -1,12 +1,10 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>支付</title>
-    <link href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+@extends('layouts.app')
+
+@section('title')
+    收银台
+@endsection
+
+@section('header')
     <style>
         body { background-color: #f4f4f4; padding-top: 20px; }
         .main-body { background-color: #ffffff; border-radius: 2px; border: 1px solid #ddd; }
@@ -16,8 +14,9 @@
 
         .copyright,.back-button { color: #999999; }
     </style>
-</head>
-<body>
+@endsection
+
+@section('content')
 
     <div class="container">
         <div class="row">
@@ -59,6 +58,4 @@
         </div>
     </div>
 
-    <script src="https://cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
-</body>
-</html>
+@endsection

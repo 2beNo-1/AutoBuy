@@ -1,19 +1,17 @@
-<!doctype html>
-<html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>自动购</title>
-    <link href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+@extends('layouts.app')
+
+@section('title')
+    AutoBuy
+@endsection
+
+@section('header')
     <style>
         .red { color: red; }
         .price { color: red; font-weight: 800; }
     </style>
-</head>
-<body>
+@endsection
 
+@section('content')
     <div class="container">
         <div class="row">
             <div class="col-sm-12 text-center">
@@ -94,50 +92,50 @@
             </div>
         </div>
     </div>
+@endsection
 
-<script src="https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
-<script src="https://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<script>
-    var checkPost = function () {
-        if ($('input[name="mobile"]').val() == "") {
-            alert('请输入手机号')
-            return false
-        }
-        if ($('input[name="email"]').val() == "") {
-            alert('请输入邮箱')
-            return false
-        }
-        return confirm('确定下单？')
-    }
 
-    var computeSum = function () {
-        var price = $('select[name="product_id"]').find('option:selected').attr('data-price')
-        var num = $('input[name="buy_num"]').val()
-        $('.price').text(price * num)
-    }
-
-    $(function () {
-        $('.dec-num').click(function () {
-            var num = parseInt($('input[name="buy_num"]').val())
-            if (num > 1) {
-                num = num - 1
-                $('input[name="buy_num"]').val(num)
+@section('footer')
+    <script>
+        var checkPost = function () {
+            if ($('input[name="mobile"]').val() == "") {
+                alert('请输入手机号')
+                return false
             }
-            computeSum()
-        });
+            if ($('input[name="email"]').val() == "") {
+                alert('请输入邮箱')
+                return false
+            }
+            return confirm('确定下单？')
+        }
 
-        $('.add-num').click(function () {
-            var num = parseInt($('input[name="buy_num"]').val())
-            num = num + 1
-            $('input[name="buy_num"]').val(num)
-            computeSum()
-        });
+        var computeSum = function () {
+            var price = $('select[name="product_id"]').find('option:selected').attr('data-price')
+            var num = $('input[name="buy_num"]').val()
+            $('.price').text(price * num)
+        }
 
-        $('select[name="product_id"]').change(function () {
-            var productPrice = $(this).find('option:selected').attr('data-price')
-            computeSum()
+        $(function () {
+            $('.dec-num').click(function () {
+                var num = parseInt($('input[name="buy_num"]').val())
+                if (num > 1) {
+                    num = num - 1
+                    $('input[name="buy_num"]').val(num)
+                }
+                computeSum()
+            });
+
+            $('.add-num').click(function () {
+                var num = parseInt($('input[name="buy_num"]').val())
+                num = num + 1
+                $('input[name="buy_num"]').val(num)
+                computeSum()
+            });
+
+            $('select[name="product_id"]').change(function () {
+                var productPrice = $(this).find('option:selected').attr('data-price')
+                computeSum()
+            });
         });
-    });
-</script>
-</body>
-</html>
+    </script>
+@endsection
