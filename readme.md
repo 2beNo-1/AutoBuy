@@ -179,6 +179,25 @@ sudo supervisorctl update
 sudo supervisorctl start laravel-echoserver:*
 ```
 
+## 帮助
+
+#### 建议一
+
+订单支付回调过程系统需要处理4条任务，其中最耗时的应该就是邮件的发送，但是有赞给回调的时间只有10S，因此考略到这个因素，请使用队列处理来优化这个问题！因为目前系统默认是同步进行的！使用教程：  
+
+修改 `.env` :
+
+```
+QUEUE_DRIVER=redis
+
+REDIS_HOST=127.0.0.1
+REDIS_PASSWORD=null
+REDIS_PORT=6379
+```
+
+注意重新启动服务！
+
+
 ## 扩展包
 
 | 扩展包 | 描述 | 应用场景 |
