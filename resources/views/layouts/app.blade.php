@@ -10,6 +10,8 @@
 
     <title>@yield('title')</title>
 
+    <script src="//{{ Request::getHost() }}:6001/socket.io/socket.io.js"></script>
+
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     @yield('header')

@@ -12,5 +12,16 @@
 */
 
 Broadcast::channel('order.{orderId}', function ($user, $orderId) {
-    return \App\Models\Order::where('oid', $orderId)->exists();
+    if (strpos($orderId, '|') === false) {
+        return false;
+    }
+    list($oid, $mobile) = explode('|', $orderId);
+    $order = \App\Models\Order::where('oid', $oid)->first();
+    if (! $order) {
+        return false;
+    }
+    if ($order->optionInfo->mobile != $mobile) {
+        return false;
+    }
+    return true;
 });

@@ -1,4 +1,4 @@
-<h2 align="center">AutoBuy<h2>
+<p align="center">AutoBuy<p>
 <br>
 <p align="center"><img src="public/thumbs/index.png"></p>
 <br>
@@ -112,6 +112,91 @@ BACKUP_NOTIFICATION_EMAIL=youemail@email.com
 ```
 
 > 前提必须要配置好邮箱配置！！！
+
+#### 支付结果实时显示
+
+首先，进入项目根目录中，打开命令行：  
+
+```
+npm install -g laravel-echo-server
+```
+
+安装成功之后你需要配置项目根目录下的 `laravel-echo-server.json` ：
+
+```
+{
+	"authHost": "http://autobuy.test:987",
+	...
+	"port": "6001",
+	"protocol": "http",
+}
+```
+
+请按照自己的环境配置相应选项，默认的 socket.io 的端口是 `6001` ，请注意！如果您是在阿里云服务器使用请注意开通 `6001` 端口！其它云服务商也是！如果您使用的 `https` 协议也请更换！你还需要修改 `.env` 的值：  
+
+```
+BROADCAST_DRIVER=redis
+QUEUE_DRIVER=redis
+
+REDIS_HOST=127.0.0.1
+REDIS_PASSWORD=null
+REDIS_PORT=6379
+```
+
+你还需要再命令行输入：
+
+```
+php artisan queue:work
+```
+
+> 如果在生产环境中使用请参考 [https://laravel.com/docs/5.5/queues#supervisor-configuration](https://laravel.com/docs/5.5/queues#supervisor-configuration) 这篇文章，配合 `supervisor` 使用！
+
+最后：
+
+```
+laravel-echo-server start
+```
+
+为了保证服务的稳定，你可以配合 `supervisor` ,在 `/etc/superviosor/conf.d/` 目录下面创建 `laravel-echoserver.conf` :
+
+```
+[program:laravel-echoserver]
+process_name=%(program_name)s_%(process_num)02d
+command=laravel-echo-server start
+autostart=true
+autorestart=true
+user=root
+numprocs=1
+redirect_stderr=true
+stdout_logfile=/you/project/folder/storage/logs/laravel-echo-server.log
+```
+
+注意替换其中的 `user` 的值！！！在命令行输入：
+
+```
+sudo supervisorctl reread
+sudo supervisorctl update
+sudo supervisorctl start laravel-echoserver:*
+```
+
+## 帮助
+
+#### 建议一
+
+订单支付回调过程系统需要处理4条任务，其中最耗时的应该就是邮件的发送，但是有赞给回调的时间只有10S，因此考略到这个因素，请使用队列处理来优化这个问题！因为目前系统默认是同步进行的！使用教程：  
+
+修改 `.env` :
+
+```
+QUEUE_DRIVER=redis
+
+REDIS_HOST=127.0.0.1
+REDIS_PASSWORD=null
+REDIS_PORT=6379
+```
+
+注意重新启动服务！
+
 
 ## 扩展包
 
