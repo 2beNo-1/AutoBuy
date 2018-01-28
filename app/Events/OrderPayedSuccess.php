@@ -4,6 +4,7 @@ namespace App\Events;
 
 use App\Models\Order;
 use Illuminate\Broadcasting\Channel;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Broadcasting\PresenceChannel;
@@ -11,7 +12,7 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class OrderPayedSuccess implements ShouldBroadcast
+class OrderPayedSuccess implements ShouldBroadcast, ShouldQueue
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -37,6 +38,19 @@ class OrderPayedSuccess implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('order.' . $this->order->oid);
+        return new PrivateChannel('order.' . $this->order->oid  . '|' . $this->order->optionInfo->mobile);
+    }
+
+    public function broadcastWith()
+    {
+        $items = [];
+        foreach ($this->order->productItems as $product) {
+            $items[] = $product->item;
+        }
+
+        return [
+            'oid' => $this->order->oid,
+            'items' => $items,
+        ];
     }
 }
